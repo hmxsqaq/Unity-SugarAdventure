@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Diagnostics;
 using Hmxs.Toolkit;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Debug = UnityEngine.Debug;
 
 namespace Hmxs.Scripts.Input
 {
     public class InputHandler : SingletonMono<InputHandler>
     {
         public bool JumpPressedThisFrame => jumpPressedThisFrame;
-        public float MoveInput => moveInput;
+        public Vector2 MoveInput => moveInput;
 
         [Title("Info")]
         [ReadOnly] [SerializeField] private bool jumpPressedThisFrame;
-        [ReadOnly] [SerializeField] private float moveInput;
+        [ReadOnly] [SerializeField] private Vector2 moveInput;
 
         private InputControls _inputControls;
 
@@ -38,7 +40,7 @@ namespace Hmxs.Scripts.Input
         private void Update()
         {
             jumpPressedThisFrame = _inputControls.Gameplay.Jump.WasPressedThisFrame();
-            moveInput = _inputControls.Gameplay.Move.ReadValue<float>();
+            moveInput = _inputControls.Gameplay.Move.ReadValue<Vector2>();
         }
 
         private void SetPause(bool pause)
