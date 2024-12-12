@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Hmxs.Scripts.Mechanism;
+using UnityEngine;
 
 namespace Hmxs.Scripts.Protagonist
 {
-	public class Protagonist : MonoBehaviour
+	public class Protagonist : MonoBehaviour, ICanBeHit
 	{
 		[SerializeField] private ProtagonistState state;
 
@@ -11,7 +12,7 @@ namespace Hmxs.Scripts.Protagonist
 			state = newState;
 		}
 
-		public void Die()
+		public void Hit(GameObject hitter)
 		{
 
 		}

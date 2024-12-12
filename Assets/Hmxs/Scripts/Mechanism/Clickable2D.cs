@@ -4,10 +4,20 @@ using UnityEngine;
 
 namespace Hmxs.Scripts.Mechanism
 {
-	[RequireComponent(typeof(HighlightEffect2D))]
+	[RequireComponent(typeof(HighlightEffect2D), typeof(Collider2D))]
 	public abstract class Clickable2D : MonoBehaviour, IInteractable
 	{
-		[SerializeField] protected bool interactable;
+		[SerializeField] private bool interactable;
+
+		protected bool Interactable
+		{
+			get => interactable;
+			set
+			{
+				interactable = value;
+				if (value == false) HighlightEffect.highlighted = false;
+			}
+		}
 
 		private HighlightEffect2D HighlightEffect { get; set; }
 
@@ -22,12 +32,12 @@ namespace Hmxs.Scripts.Mechanism
 			HighlightEffect.highlighted = false;
 		}
 
-		private void OnMouseEnter() => HighlightEffect.highlighted = interactable;
+		private void OnMouseOver() => HighlightEffect.highlighted = Interactable;
 		private void OnMouseExit() => HighlightEffect.highlighted = false;
 
 		private void OnMouseUp()
 		{
-			if (interactable) Interact();
+			if (Interactable) Interact();
 		}
 
 		public abstract void Interact();
