@@ -1,6 +1,6 @@
 ﻿namespace Hmxs.Scripts.Protagonist
 {
-	public enum ProtagonistState
+	public enum ProtagonistType
 	{
 		Solid,
 		Gas

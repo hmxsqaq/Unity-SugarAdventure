@@ -3,18 +3,15 @@ using UnityEngine;
 
 namespace Hmxs.Scripts.Protagonist
 {
-	public class Protagonist : MonoBehaviour, ICanBeHit
+	public abstract class Protagonist : MonoBehaviour, ICanBeHit
 	{
-		[SerializeField] private ProtagonistState state;
+		public abstract void Enter(Vector2 position);
+		public abstract Vector2 Exit();
 
-		public void ChangeState(ProtagonistState newState)
-		{
-			state = newState;
-		}
+		public abstract Vector2 GetPosition();
+		public abstract void SetPosition(Vector2 position);
 
-		public void Hit(GameObject hitter)
-		{
+		public abstract void Hit(GameObject hitter);
 
-		}
 	}
 }
