@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
+using Hmxs.Toolkit;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Hmxs.Scripts.Protagonist
 {
-	public class ProtagonistManager : MonoBehaviour
+	public class ProtagonistManager : SingletonMono<ProtagonistManager>
 	{
 		[Title("References")]
 		[SerializeField] private Protagonist protagonistSolid;
@@ -13,7 +15,13 @@ namespace Hmxs.Scripts.Protagonist
 		[SerializeField] private ProtagonistType startingProtagonist;
 		[SerializeField] [ReadOnly] private Protagonist current;
 
-		private void Start() => Setup();
+		public Protagonist CurrentProtagonist => current;
+
+		protected override void Awake()
+		{
+			base.Awake();
+			Setup();
+		}
 
 		private void Setup()
 		{
@@ -21,7 +29,6 @@ namespace Hmxs.Scripts.Protagonist
 			protagonistSolid.gameObject.SetActive(false);
 			current = GetProtagonist(startingProtagonist);
 			current.gameObject.SetActive(true);
-			current.Enter(transform.position);
 		}
 
 		[Button]
@@ -45,6 +52,15 @@ namespace Hmxs.Scripts.Protagonist
 				_ => throw new ArgumentOutOfRangeException()
 			};
 			return protagonist;
+		}
+
+		public void SetParent(Transform parent = null) => StartCoroutine(SetParentCoroutine(parent));
+
+		private IEnumerator SetParentCoroutine(Transform parent)
+		{
+			yield return null;
+			if (!isActiveAndEnabled) yield break;
+			transform.SetParent(parent);
 		}
 	}
 }

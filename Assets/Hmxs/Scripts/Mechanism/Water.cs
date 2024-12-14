@@ -1,10 +1,10 @@
-﻿using Hmxs.Scripts.Protagonist;
+﻿using System;
+using Hmxs.Scripts.Protagonist;
 using UnityEngine;
 
 namespace Hmxs.Scripts.Mechanism
 {
-	[RequireComponent(typeof(Collider2D))]
-	public class Saw : MonoBehaviour
+	public class Water : MonoBehaviour
 	{
 		private void OnTriggerEnter2D(Collider2D other)
 		{

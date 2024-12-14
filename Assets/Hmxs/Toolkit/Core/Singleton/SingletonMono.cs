@@ -13,16 +13,10 @@ namespace Hmxs.Toolkit
             if (instance != null) return instance;
             var singletonObject = new GameObject(typeof(T).Name + "_Singleton");
             instance = singletonObject.AddComponent<T>();
-            instance.OnInstanceInit(instance);
             return instance;
         });
 
         public static T Instance => InstanceHolder.Value;
-
-        /// <summary>
-        /// called when instance is initialized
-        /// </summary>
-        protected virtual void OnInstanceInit(T instance) => DontDestroyOnLoad(gameObject);
 
         protected virtual void Awake()
         {

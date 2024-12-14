@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using Hmxs.Toolkit;
+using UnityEngine;
 
 namespace Hmxs.Scripts.Protagonist
 {
@@ -7,11 +10,24 @@ namespace Hmxs.Scripts.Protagonist
 	{
 		private UnityJellySprite _jellySprite;
 
-		private void Start()
+		private void Awake()
 		{
 			_jellySprite = GetComponent<UnityJellySprite>();
 			if (!_jellySprite)
 				Debug.LogError("Gas should have a JellySprite component");
+		}
+
+		private void OnEnable() => StartCoroutine(SetReferencePointParentCoroutine());
+
+		private IEnumerator SetReferencePointParentCoroutine()
+		{
+			yield return null;
+			if (!_jellySprite.m_ReferencePointParent)
+			{
+				Debug.LogError("Gas should have a ReferencePointParent");
+				yield break;
+			}
+			_jellySprite.m_ReferencePointParent.transform.SetParent(transform.parent);
 		}
 
 		public override void Enter(Vector2 position)
@@ -32,9 +48,12 @@ namespace Hmxs.Scripts.Protagonist
 			_jellySprite.m_ReferencePointParent.transform.position += (Vector3)offset;
 		}
 
+
+		public override void AddForce(Vector2 force, ForceMode2D mode) =>
+			_jellySprite.CentralPoint.Body2D.AddForce(force, mode);
+
 		public override void Hit(GameObject hitter)
 		{
-
 		}
 	}
 }

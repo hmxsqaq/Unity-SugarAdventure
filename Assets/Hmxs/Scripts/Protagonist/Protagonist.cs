@@ -11,7 +11,8 @@ namespace Hmxs.Scripts.Protagonist
 		public abstract Vector2 GetPosition();
 		public abstract void SetPosition(Vector2 position);
 
-		public abstract void Hit(GameObject hitter);
+		public abstract void AddForce(Vector2 force, ForceMode2D mode);
 
+		public abstract void Hit(GameObject hitter);
 	}
 }
