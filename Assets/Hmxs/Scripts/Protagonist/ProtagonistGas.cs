@@ -17,19 +17,6 @@ namespace Hmxs.Scripts.Protagonist
 				Debug.LogError("Gas should have a JellySprite component");
 		}
 
-		private void OnEnable() => StartCoroutine(SetReferencePointParentCoroutine());
-
-		private IEnumerator SetReferencePointParentCoroutine()
-		{
-			yield return null;
-			if (!_jellySprite.m_ReferencePointParent)
-			{
-				Debug.LogError("Gas should have a ReferencePointParent");
-				yield break;
-			}
-			_jellySprite.m_ReferencePointParent.transform.SetParent(transform.parent);
-		}
-
 		public override void Enter(Vector2 position)
 		{
 			SetPosition(position);
@@ -54,6 +41,7 @@ namespace Hmxs.Scripts.Protagonist
 
 		public override void Hit(GameObject hitter)
 		{
+			Debug.Log("Hit by " + hitter.name);
 		}
 	}
 }

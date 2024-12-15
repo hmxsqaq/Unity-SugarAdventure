@@ -439,9 +439,14 @@ public abstract class JellySprite : MonoBehaviour
 			}
 #endif
 
-			m_ReferencePointParent = new GameObject();
-			m_ReferencePointParent.name = this.name + " Reference Points";
-
+			m_ReferencePointParent = new GameObject
+			{
+				name = name + " Reference Points",
+				transform =
+				{
+					parent = m_Transform.parent
+				}
+			};
 			m_ReferencePoints = new List<ReferencePoint>();
 
 			switch(m_Style)

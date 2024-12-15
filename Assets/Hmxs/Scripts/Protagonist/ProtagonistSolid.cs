@@ -33,7 +33,7 @@ namespace Hmxs.Scripts.Protagonist
 
 		public override void Hit(GameObject hitter)
 		{
-
+			Debug.Log("Hit by " + hitter.name);
 		}
 	}
 }

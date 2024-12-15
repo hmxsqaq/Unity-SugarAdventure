@@ -54,13 +54,13 @@ namespace Hmxs.Scripts.Protagonist
 			return protagonist;
 		}
 
-		public void SetParent(Transform parent = null) => StartCoroutine(SetParentCoroutine(parent));
-
-		private IEnumerator SetParentCoroutine(Transform parent)
+		public void SetParent(Transform parent = null)
 		{
-			yield return null;
-			if (!isActiveAndEnabled) yield break;
-			transform.SetParent(parent);
+			Timer.Register(0.1f, () =>
+			{
+				if (isActiveAndEnabled)
+					transform.SetParent(parent);
+			});
 		}
 	}
 }

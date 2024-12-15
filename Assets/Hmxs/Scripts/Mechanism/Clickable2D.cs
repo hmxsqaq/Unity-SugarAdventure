@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Hmxs.Scripts.Mechanism
 {
-	[RequireComponent(typeof(HighlightEffect2D), typeof(Collider2D))]
+	[RequireComponent(typeof(Collider2D))]
 	public abstract class Clickable2D : MonoBehaviour, IInteractable
 	{
 		[SerializeField] private bool interactable;
@@ -15,25 +15,26 @@ namespace Hmxs.Scripts.Mechanism
 			set
 			{
 				interactable = value;
-				if (value == false) HighlightEffect.highlighted = false;
+				if (value == false) highlightEffect.highlighted = false;
 			}
 		}
 
-		private HighlightEffect2D HighlightEffect { get; set; }
+		[SerializeField] private HighlightEffect2D highlightEffect;
 
 		protected virtual void Awake()
 		{
-			HighlightEffect = GetComponent<HighlightEffect2D>();
-			if (!HighlightEffect)
+			if (highlightEffect) return;
+			highlightEffect = GetComponent<HighlightEffect2D>();
+			if (!highlightEffect)
 			{
 				Debug.LogError("HighlightEffect2D not found on " + name);
 				return;
 			}
-			HighlightEffect.highlighted = false;
+			highlightEffect.highlighted = false;
 		}
 
-		private void OnMouseOver() => HighlightEffect.highlighted = Interactable;
-		private void OnMouseExit() => HighlightEffect.highlighted = false;
+		private void OnMouseOver() => highlightEffect.highlighted = Interactable;
+		private void OnMouseExit() => highlightEffect.highlighted = false;
 
 		private void OnMouseUp()
 		{

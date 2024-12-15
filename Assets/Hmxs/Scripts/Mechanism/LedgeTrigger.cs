@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Hmxs.Scripts.Protagonist;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,6 +7,7 @@ namespace Hmxs.Scripts.Mechanism
 {
 	public class LedgeTrigger : Clickable2D
 	{
+		[SerializeField] private Transform target;
 		[SerializeField] private AnimationCurve curve;
 		[SerializeField] [ReadOnly] private float originAngle;
 		[SerializeField] private float targetAngle;
@@ -20,7 +20,7 @@ namespace Hmxs.Scripts.Mechanism
 
 		private void Start()
 		{
-			originAngle = transform.eulerAngles.z;
+			originAngle = target.eulerAngles.z;
 			isTriggered = false;
 		}
 
@@ -29,7 +29,7 @@ namespace Hmxs.Scripts.Mechanism
 			var destAngle = isTriggered ? originAngle : targetAngle;
 			isTriggered = !isTriggered;
 			Interactable = false;
-			transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, destAngle), duration)
+			target.DORotate(new Vector3(target.eulerAngles.x, target.eulerAngles.y, destAngle), duration)
 				.SetEase(curve)
 				.OnComplete(() =>
 				{
@@ -43,7 +43,7 @@ namespace Hmxs.Scripts.Mechanism
 			if (other.gameObject.CompareTag("Protagonist"))
 			{
 				protagonist = ProtagonistManager.Instance.CurrentProtagonist;
-				ProtagonistManager.Instance.SetParent(transform);
+				ProtagonistManager.Instance.SetParent(target);
 				var contact = other.GetContact(0);
 				forceDirection = -contact.normal.normalized;
 			}
@@ -60,14 +60,15 @@ namespace Hmxs.Scripts.Mechanism
 
 		private void OnValidate()
 		{
-			originAngle = transform.eulerAngles.z;
+			originAngle = target.eulerAngles.z;
 		}
 
 		private void OnDrawGizmos()
 		{
+			if (!target) return;
 			Gizmos.color = Color.green;
-			Gizmos.DrawRay(transform.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, originAngle) * Vector2.right * 3f);
-			Gizmos.DrawRay(transform.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, targetAngle) * Vector2.right * 3f);
+			Gizmos.DrawRay(target.position, Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, originAngle) * Vector2.right * 3f);
+			Gizmos.DrawRay(target.position, Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, targetAngle) * Vector2.right * 3f);
 		}
 	}
 }
