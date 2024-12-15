@@ -43,5 +43,15 @@ namespace Hmxs.Scripts.Protagonist
 		{
 			Debug.Log("Hit by " + hitter.name);
 		}
+
+		public override void SetParent(Transform parent)
+		{
+			Vector3 originalPosition = _jellySprite.m_ReferencePointParent.transform.position;
+			Quaternion originalRotation = _jellySprite.m_ReferencePointParent.transform.rotation;
+			parent = parent ? parent : transform.parent;
+			_jellySprite.m_ReferencePointParent.transform.SetParent(parent, false);
+			_jellySprite.m_ReferencePointParent.transform.position = originalPosition;
+			_jellySprite.m_ReferencePointParent.transform.rotation = originalRotation;
+		}
 	}
 }

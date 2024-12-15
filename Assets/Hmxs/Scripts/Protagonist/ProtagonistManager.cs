@@ -54,13 +54,6 @@ namespace Hmxs.Scripts.Protagonist
 			return protagonist;
 		}
 
-		public void SetParent(Transform parent = null)
-		{
-			Timer.Register(0.1f, () =>
-			{
-				if (isActiveAndEnabled)
-					transform.SetParent(parent);
-			});
-		}
+		public void SetParent(Transform parent = null) => CurrentProtagonist.SetParent(parent);
 	}
 }

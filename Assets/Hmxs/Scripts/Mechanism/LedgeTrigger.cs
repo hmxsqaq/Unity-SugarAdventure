@@ -29,12 +29,12 @@ namespace Hmxs.Scripts.Mechanism
 			var destAngle = isTriggered ? originAngle : targetAngle;
 			isTriggered = !isTriggered;
 			Interactable = false;
+			if (protagonist) protagonist.AddForce(forceDirection * force, ForceMode2D.Impulse);
 			target.DORotate(new Vector3(target.eulerAngles.x, target.eulerAngles.y, destAngle), duration)
 				.SetEase(curve)
 				.OnComplete(() =>
 				{
 					Interactable = true;
-					if (protagonist) protagonist.AddForce(forceDirection * force, ForceMode2D.Impulse);
 				});
 		}
 
@@ -43,7 +43,7 @@ namespace Hmxs.Scripts.Mechanism
 			if (other.gameObject.CompareTag("Protagonist"))
 			{
 				protagonist = ProtagonistManager.Instance.CurrentProtagonist;
-				ProtagonistManager.Instance.SetParent(target);
+				// ProtagonistManager.Instance.SetParent(target);
 				var contact = other.GetContact(0);
 				forceDirection = -contact.normal.normalized;
 			}
@@ -53,11 +53,12 @@ namespace Hmxs.Scripts.Mechanism
 		{
 			if (other.gameObject.CompareTag("Protagonist"))
 			{
-				ProtagonistManager.Instance.SetParent();
+				// ProtagonistManager.Instance.SetParent();
 				protagonist = null;
 			}
 		}
 
+		[Button]
 		private void OnValidate()
 		{
 			originAngle = target.eulerAngles.z;

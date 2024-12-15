@@ -14,5 +14,7 @@ namespace Hmxs.Scripts.Protagonist
 		public abstract void AddForce(Vector2 force, ForceMode2D mode);
 
 		public abstract void Hit(GameObject hitter);
+
+		public abstract void SetParent(Transform parent);
 	}
 }

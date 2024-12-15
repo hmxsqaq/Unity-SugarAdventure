@@ -35,5 +35,17 @@ namespace Hmxs.Scripts.Protagonist
 		{
 			Debug.Log("Hit by " + hitter.name);
 		}
+
+		public override void SetParent(Transform parent)
+		{
+			Vector3 originalScale = transform.lossyScale;
+			Debug.Log(originalScale);
+			parent = parent ? parent : transform.parent;
+			transform.SetParent(parent, true);
+
+			Vector3 parentScale = parent.localScale;
+			transform.localScale = new Vector3(originalScale.x / parentScale.x, originalScale.y / parentScale.y, 1);
+			Debug.Log(transform.lossyScale);
+		}
 	}
 }
