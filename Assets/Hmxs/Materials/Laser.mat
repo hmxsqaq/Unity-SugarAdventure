@@ -41,12 +41,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CenterConcentrate: 0.9
-    - _Concentrate: 1.5
+    - _CenterConcentrate: 0.91
+    - _Concentrate: 1
     - _EnableExternalAlpha: 0
-    - _Luminance: 0.181
+    - _Luminance: 0.345
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 0.56078434, b: 0.56078434, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
