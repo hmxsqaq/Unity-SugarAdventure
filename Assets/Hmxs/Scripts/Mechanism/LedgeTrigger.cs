@@ -9,67 +9,67 @@ namespace Hmxs.Scripts.Mechanism
 	{
 		[SerializeField] private Transform target;
 		[SerializeField] private AnimationCurve curve;
-		[SerializeField] [ReadOnly] private float originAngle;
-		[SerializeField] private float targetAngle;
+		[SerializeField] private float currentAngle;
+		[SerializeField] private float rotateAngle;
 		[SerializeField] private float duration;
 		[SerializeField] private float force;
+		[SerializeField] private Vector2 forceDirection;
 		[SerializeField] [ReadOnly] private bool isTriggered;
-
+		[SerializeField] [ReadOnly] private float targetAngle;
 		[SerializeField] [ReadOnly] private Protagonist.Protagonist protagonist;
-		[SerializeField] [ReadOnly] private Vector2 forceDirection;
 
 		private void Start()
 		{
-			originAngle = target.eulerAngles.z;
 			isTriggered = false;
+			forceDirection.Normalize();
 		}
 
 		public override void Interact()
 		{
-			var destAngle = isTriggered ? originAngle : targetAngle;
+			targetAngle = isTriggered ? currentAngle - rotateAngle : currentAngle + rotateAngle;
+
 			isTriggered = !isTriggered;
 			Interactable = false;
 			if (protagonist) protagonist.AddForce(forceDirection * force, ForceMode2D.Impulse);
-			target.DORotate(new Vector3(target.eulerAngles.x, target.eulerAngles.y, destAngle), duration)
+			target.DORotate(new Vector3(target.eulerAngles.x, target.eulerAngles.y, targetAngle), duration, RotateMode.FastBeyond360)
 				.SetEase(curve)
 				.OnComplete(() =>
 				{
 					Interactable = true;
+					currentAngle = transform.eulerAngles.z;
 				});
 		}
 
 		private void OnCollisionStay2D(Collision2D other)
 		{
 			if (other.gameObject.CompareTag("Protagonist"))
-			{
 				protagonist = ProtagonistManager.Instance.CurrentProtagonist;
-				// ProtagonistManager.Instance.SetParent(target);
-				var contact = other.GetContact(0);
-				forceDirection = -contact.normal.normalized;
-			}
 		}
 
 		private void OnCollisionExit2D(Collision2D other)
 		{
 			if (other.gameObject.CompareTag("Protagonist"))
-			{
-				// ProtagonistManager.Instance.SetParent();
 				protagonist = null;
-			}
 		}
 
 		[Button]
 		private void OnValidate()
 		{
-			originAngle = target.eulerAngles.z;
+			target.eulerAngles = new Vector3(target.eulerAngles.x, target.eulerAngles.y, currentAngle);
 		}
 
-		private void OnDrawGizmos()
+		private void OnDrawGizmosSelected()
 		{
-			if (!target) return;
-			Gizmos.color = Color.green;
-			Gizmos.DrawRay(target.position, Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, originAngle) * Vector2.right * 3f);
-			Gizmos.DrawRay(target.position, Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, targetAngle) * Vector2.right * 3f);
+			if (target)
+			{
+				Gizmos.color = new Color(0, 100, 0);
+				Gizmos.DrawRay(target.position,
+					Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, currentAngle) * Vector2.right * 2f);
+				Gizmos.DrawRay(target.position,
+					Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, targetAngle) * Vector2.right * 2f);
+			}
+			Gizmos.color = new Color(100, 0, 0);
+			Gizmos.DrawRay(transform.position, forceDirection.normalized * force / 5);
 		}
 	}
 }
