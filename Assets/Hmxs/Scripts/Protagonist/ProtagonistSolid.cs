@@ -7,12 +7,16 @@ namespace Hmxs.Scripts.Protagonist
 	public class ProtagonistSolid : Protagonist
 	{
 		private Rigidbody2D _rb;
+		private SpriteRenderer _spriteRenderer;
 
 		protected void Start()
 		{
 			_rb = GetComponent<Rigidbody2D>();
 			if (!_rb)
 				Debug.LogError("Solid should have a Rigidbody2D component");
+			_spriteRenderer = GetComponent<SpriteRenderer>();
+			if (!_spriteRenderer)
+				Debug.LogError("Solid should have a SpriteRenderer component");
 		}
 
 		public override void Enter(Vector2 position)
@@ -36,16 +40,11 @@ namespace Hmxs.Scripts.Protagonist
 			Debug.Log("Hit by " + hitter.name);
 		}
 
-		public override void SetParent(Transform parent)
-		{
-			Vector3 originalScale = transform.lossyScale;
-			Debug.Log(originalScale);
-			parent = parent ? parent : transform.parent;
-			transform.SetParent(parent, true);
+		public override void ChangeEmoji(Sprite emoji) => _spriteRenderer.sprite = emoji;
 
-			Vector3 parentScale = parent.localScale;
-			transform.localScale = new Vector3(originalScale.x / parentScale.x, originalScale.y / parentScale.y, 1);
-			Debug.Log(transform.lossyScale);
+		private void OnCollisionEnter2D(Collision2D _)
+		{
+			EmojiCounter = emojiDuration;
 		}
 	}
 }

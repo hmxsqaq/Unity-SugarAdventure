@@ -53,7 +53,5 @@ namespace Hmxs.Scripts.Protagonist
 			};
 			return protagonist;
 		}
-
-		public void SetParent(Transform parent = null) => CurrentProtagonist.SetParent(parent);
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using Hmxs.Toolkit;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Hmxs.Scripts.Protagonist
 {
@@ -44,14 +45,12 @@ namespace Hmxs.Scripts.Protagonist
 			Debug.Log("Hit by " + hitter.name);
 		}
 
-		public override void SetParent(Transform parent)
+		public override void ChangeEmoji(Sprite emoji) => _jellySprite.m_Sprite = emoji;
+
+		[Preserve]
+		private void OnJellyCollisionEnter2D(JellySprite.JellyCollision2D _)
 		{
-			Vector3 originalPosition = _jellySprite.m_ReferencePointParent.transform.position;
-			Quaternion originalRotation = _jellySprite.m_ReferencePointParent.transform.rotation;
-			parent = parent ? parent : transform.parent;
-			_jellySprite.m_ReferencePointParent.transform.SetParent(parent, false);
-			_jellySprite.m_ReferencePointParent.transform.position = originalPosition;
-			_jellySprite.m_ReferencePointParent.transform.rotation = originalRotation;
+			EmojiCounter = emojiDuration;
 		}
 	}
 }

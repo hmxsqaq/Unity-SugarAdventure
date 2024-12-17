@@ -5,6 +5,13 @@ namespace Hmxs.Scripts.Protagonist
 {
 	public abstract class Protagonist : MonoBehaviour, ICanBeHit
 	{
+		[SerializeField] protected Sprite normal;
+		[SerializeField] protected Sprite angry;
+		[SerializeField] protected Sprite afraid;
+		[SerializeField] protected Sprite shocked;
+		[SerializeField] protected float emojiDuration;
+		protected float EmojiCounter;
+
 		public abstract void Enter(Vector2 position);
 		public abstract Vector2 Exit();
 
@@ -15,6 +22,16 @@ namespace Hmxs.Scripts.Protagonist
 
 		public abstract void Hit(GameObject hitter);
 
-		public abstract void SetParent(Transform parent);
+		public abstract void ChangeEmoji(Sprite emoji);
+
+		protected virtual void Update()
+		{
+			if (!(EmojiCounter > 0)) return;
+			EmojiCounter -= Time.deltaTime;
+			if (EmojiCounter <= 0)
+			{
+				ChangeEmoji(normal);
+			}
+		}
 	}
 }
