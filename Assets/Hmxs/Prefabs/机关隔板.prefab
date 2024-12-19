@@ -628,7 +628,7 @@ MonoBehaviour:
   force: 5
   forceDirection: {x: 0, y: 1}
   isTriggered: 0
-  targetAngle: -13.4
+  targetAngle: -20
   protagonist: {fileID: 0}
   sound1: {fileID: 4628474010477274329}
   sound2: {fileID: 3906178302437779400}

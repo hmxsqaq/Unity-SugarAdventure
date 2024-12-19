@@ -43,5 +43,10 @@ namespace Hmxs.Scripts.Mechanism
 				_surfaceEffector2D.speed = 0;
 			}
 		}
+
+		private void OnValidate()
+		{
+			GetComponent<SurfaceEffector2D>().speed = runningSpeed;
+		}
 	}
 }

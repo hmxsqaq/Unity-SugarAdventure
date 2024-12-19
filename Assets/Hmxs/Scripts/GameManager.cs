@@ -10,6 +10,16 @@ namespace Hmxs.Scripts
 	{
 		public Transform startPosition;
 
+		private void OnEnable()
+		{
+			Events.AddListener(EventNames.Win, ResetProtagonist);
+		}
+
+		private void OnDisable()
+		{
+			Events.RemoveListener(EventNames.Win, ResetProtagonist);
+		}
+
 		[Button]
 		public void ResetProtagonist()
 		{

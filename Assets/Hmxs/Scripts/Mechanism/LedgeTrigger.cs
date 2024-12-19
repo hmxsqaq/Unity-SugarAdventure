@@ -66,6 +66,7 @@ namespace Hmxs.Scripts.Mechanism
 		private void OnValidate()
 		{
 			target.eulerAngles = new Vector3(target.eulerAngles.x, target.eulerAngles.y, currentAngle);
+			targetAngle = currentAngle + rotateAngle;
 		}
 
 		private void OnDrawGizmosSelected()

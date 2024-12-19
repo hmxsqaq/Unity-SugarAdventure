@@ -2,6 +2,6 @@
 {
 	public static class EventNames
 	{
-		public static string Win = "Win";
+		public const string Win = "Win";
 	}
 }
