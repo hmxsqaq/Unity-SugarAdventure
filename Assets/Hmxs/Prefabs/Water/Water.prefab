@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6235748266326361549}
   - component: {fileID: 5324748258432312843}
   - component: {fileID: 5692141494307003365}
+  - component: {fileID: -5623195351745967907}
   m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
@@ -353,3 +354,15 @@ BuoyancyEffector2D:
   m_FlowAngle: 0
   m_FlowMagnitude: 0
   m_FlowVariation: 0
+--- !u!114 &-5623195351745967907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764481510521347862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c092ccfc1f44ec2827449b196442a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
