@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using MoreMountains.Feedbacks;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Hmxs.Scripts.Mechanism
@@ -11,6 +12,9 @@ namespace Hmxs.Scripts.Mechanism
 		[SerializeField] private float activationTime;
 		[SerializeField] private float deactivationTime;
 		[SerializeField] private MMF_Player gunChargingFeedback;
+
+		[Title("Audio")]
+		[SerializeField] private MMF_Player sound;
 
 		private IEnumerator Start()
 		{
@@ -50,7 +54,16 @@ namespace Hmxs.Scripts.Mechanism
 			StartCoroutine(LaserEnableCoroutine());
 		}
 
-		private void ActivateLaser() => laser.Activate();
-		private void DeactivateLaser() => laser.Deactivate();
+		private void ActivateLaser()
+		{
+			laser.Activate();
+			sound.PlayFeedbacks();
+		}
+
+		private void DeactivateLaser()
+		{
+			laser.Deactivate();
+			sound.StopFeedbacks();
+		}
 	}
 }
