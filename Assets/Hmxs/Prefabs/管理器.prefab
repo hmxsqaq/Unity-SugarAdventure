@@ -77,3 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {fileID: 9179791846932926658}
+  levels:
+  - test1
+  - test2
+  currentLevelIndex: 0
