@@ -9,9 +9,11 @@ namespace Hmxs.Scripts.Mechanism
 		[SerializeField] private bool isRunning;
 		[SerializeField] private float runningSpeed;
 		private SurfaceEffector2D _surfaceEffector2D;
+		private Animator _animator;
 
 		private void Start()
 		{
+			 _animator = GetComponent<Animator>();
 			 _surfaceEffector2D = GetComponent<SurfaceEffector2D>();
 			 if (_surfaceEffector2D == null)
 			 {
@@ -37,10 +39,12 @@ namespace Hmxs.Scripts.Mechanism
 			if (running)
 			{
 				_surfaceEffector2D.speed = runningSpeed;
+				_animator.Play($"run");
 			}
 			else
 			{
 				_surfaceEffector2D.speed = 0;
+				_animator.Play($"idle");
 			}
 		}
 

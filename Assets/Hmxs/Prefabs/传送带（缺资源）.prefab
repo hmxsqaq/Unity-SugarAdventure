@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6897174754734856351}
   - component: {fileID: 4180521019266654141}
-  - component: {fileID: 7559174967707335859}
+  - component: {fileID: 8461054360781445542}
   - component: {fileID: 2881964093749479564}
   - component: {fileID: 238727884039324525}
   - component: {fileID: 6927112454013625799}
+  - component: {fileID: 2904559260956304007}
   m_Layer: 0
   m_Name: "\u4F20\u9001\u5E26\uFF08\u7F3A\u8D44\u6E90\uFF09"
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6981132, g: 0.31217512, b: 0.5975226, a: 1}
+  m_Sprite: {fileID: -918597964, guid: 72910069b28c1d04f8cc0c0748015137, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,8 +89,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7559174967707335859
-BoxCollider2D:
+--- !u!70 &8461054360781445542
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,18 +122,8 @@ BoxCollider2D:
   m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 4.41046, y: 1.0847377}
+  m_Direction: 1
 --- !u!252 &2881964093749479564
 SurfaceEffector2D:
   m_ObjectHideFlags: 0
@@ -246,3 +237,24 @@ MonoBehaviour:
   highlightEffect: {fileID: 238727884039324525}
   isRunning: 0
   runningSpeed: 1
+--- !u!95 &2904559260956304007
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830888763708367698}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 553b6b2fb02fedb47aa133ac4fbcfcc3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
