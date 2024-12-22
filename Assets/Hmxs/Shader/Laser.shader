@@ -12,7 +12,10 @@
 	{
 		Tags
 		{
-			"RenderType"="Transparent" "Queue"="Transparent" "IgnoreProjector"="True"
+			"RenderType"="Transparent"
+			"Queue"="Transparent"
+			"RenderPipeline" = "UniversalPipeline"
+			"IgnoreProjector"="True"
 		}
 		LOD 100
 

@@ -1,23 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using Hmxs.Toolkit;
+using UnityEngine;
 
 namespace Hmxs.Scripts.Mechanism
 {
 	[RequireComponent(typeof(AreaEffector2D), typeof(Collider2D))]
 	public class WindZone : MonoBehaviour
 	{
+		[SerializeField] private Transform arrowParent;
+		[SerializeField] private float moveSpeed;
 		private AreaEffector2D _wind;
-		private SpriteRenderer _spriteRenderer;
+		private float _windZoneLength;
 
 		private void Awake()
 		{
 			_wind = GetComponent<AreaEffector2D>();
-			_spriteRenderer = GetComponent<SpriteRenderer>();
 		}
 
 		public void SetWindEnabled(bool isEnabled)
 		{
 			_wind.enabled = isEnabled;
-			_spriteRenderer.enabled = isEnabled;
+			arrowParent.gameObject.SetActive(isEnabled);
 		}
 
 		public void SetWindDirection(float angle) => _wind.forceAngle = angle;
