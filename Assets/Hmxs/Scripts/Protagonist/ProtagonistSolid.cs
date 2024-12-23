@@ -57,7 +57,7 @@ namespace Hmxs.Scripts.Protagonist
 
 		public override void AddForce(Vector2 force, ForceMode2D mode) => _rb.AddForce(force, mode);
 
-		public override void ChangeEmoji(Sprite emoji) => _spriteRenderer.sprite = emoji;
+		protected override void ChangeEmoji(Sprite emoji) => _spriteRenderer.sprite = emoji;
 		public override void SetColor(Color color) => _spriteRenderer.color = color;
 
 		private void OnCollisionEnter2D(Collision2D _)

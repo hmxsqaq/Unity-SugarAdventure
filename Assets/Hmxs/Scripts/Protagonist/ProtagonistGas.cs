@@ -51,7 +51,7 @@ namespace Hmxs.Scripts.Protagonist
 		public override void AddForce(Vector2 force, ForceMode2D mode) =>
 			_jellySprite.CentralPoint.Body2D.AddForce(force, mode);
 
-		public override void ChangeEmoji(Sprite emoji) => _jellySprite.m_Sprite = emoji;
+		protected override void ChangeEmoji(Sprite emoji) => _jellySprite.m_Sprite = emoji;
 		public override void SetColor(Color color) => _jellySprite.m_Color = color;
 
 		[Preserve]

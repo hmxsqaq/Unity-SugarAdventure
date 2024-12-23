@@ -217,7 +217,7 @@ MonoBehaviour:
   center: {x: 0, y: 0}
   scale: {x: 1, y: 1}
   aspectRatio: 1
-  pivotPos: {x: 0.07, y: 0.5}
+  pivotPos: {x: 0.5, y: 0.5}
   rmsCount: 1
   scaleBeforeZoom: {x: 1, y: 1, z: 1}
   scaleAfterZoom: {x: 1, y: 1, z: 1}
