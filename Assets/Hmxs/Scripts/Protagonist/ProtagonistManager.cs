@@ -22,10 +22,15 @@ namespace Hmxs.Scripts.Protagonist
 
 		private bool _isSetup;
 
+		private ProtagonistType _initialType;
+
+		private void Start() => _initialType = protagonistType;
+
 		public Protagonist Setup()
 		{
 			protagonistGas.gameObject.SetActive(false);
 			protagonistSolid.gameObject.SetActive(false);
+			protagonistType = _initialType;
 			current = GetProtagonist();
 			current.gameObject.SetActive(true);
 			current.SetPosition(GameManager.Instance.startPosition.position, true);
@@ -66,6 +71,7 @@ namespace Hmxs.Scripts.Protagonist
 			newProtagonist.gameObject.SetActive(true);
 			newProtagonist.Enter(pos);
 			current = newProtagonist;
+			current.SetColor(Color.white);
 		}
 
 		private Protagonist GetProtagonist()

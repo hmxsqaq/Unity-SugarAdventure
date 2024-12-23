@@ -1,4 +1,5 @@
 ﻿using System;
+using Hmxs.Toolkit;
 using UnityEngine;
 
 namespace Hmxs.Scripts.Mechanism
@@ -10,6 +11,7 @@ namespace Hmxs.Scripts.Mechanism
 		[SerializeField] private float runningSpeed;
 		private SurfaceEffector2D _surfaceEffector2D;
 		private Animator _animator;
+		private bool _initialState;
 
 		private void Start()
 		{
@@ -19,17 +21,24 @@ namespace Hmxs.Scripts.Mechanism
 			 {
 				 Debug.LogError("SurfaceEffector2D not found on " + name);
 			 }
+			 _initialState = isRunning;
 			 SetRunningState(isRunning);
 		}
 
-		private void OnEnable()
+		private void OnEnable() => Events.AddListener(EventNames.Restart, Restart);
+		private void OnDisable() => Events.RemoveListener(EventNames.Restart, Restart);
+
+		private void Restart()
 		{
-			SetRunningState(isRunning);
+			isRunning = _initialState;
+			SetRunningState(_initialState);
 		}
 
 		public override void Interact()
 		{
 			isRunning = !isRunning;
+			if (isRunning) sound1.PlayFeedbacks();
+			else sound2.PlayFeedbacks();
 			SetRunningState(isRunning);
 		}
 

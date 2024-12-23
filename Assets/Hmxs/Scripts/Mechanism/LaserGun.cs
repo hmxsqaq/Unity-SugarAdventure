@@ -63,7 +63,6 @@ namespace Hmxs.Scripts.Mechanism
 		private void DeactivateLaser()
 		{
 			laser.Deactivate();
-			sound.StopFeedbacks();
 		}
 	}
 }

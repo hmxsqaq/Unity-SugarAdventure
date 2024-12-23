@@ -1,5 +1,7 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using Hmxs.Scripts.Protagonist;
+using Hmxs.Toolkit;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -19,14 +21,19 @@ namespace Hmxs.Scripts.Mechanism
 		[SerializeField] [ReadOnly] private float targetAngle;
 		[SerializeField] [ReadOnly] private Protagonist.Protagonist protagonist;
 
-		[Title("Audio")]
-		[SerializeField] private MMF_Player sound1;
-		[SerializeField] private MMF_Player sound2;
-
 		private void Start()
 		{
 			isTriggered = false;
 			forceDirection.Normalize();
+		}
+
+		private void OnEnable() => Events.AddListener(EventNames.Restart, Restart);
+		private void OnDisable() => Events.RemoveListener(EventNames.Restart, Restart);
+
+		private void Restart()
+		{
+			if (!isTriggered) return;
+			Interact();
 		}
 
 		public override void Interact()

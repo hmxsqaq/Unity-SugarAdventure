@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb567c078b54a48b82addfcb9ef585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 895820383106646398, guid: d85764f627b9e604096ddf5d5a8c6174, type: 3}
   normal: {fileID: 176580753, guid: ff5416dba2c9561498a7e6840920638c, type: 3}
   angry: {fileID: -1757309553, guid: 1237d13b4dee1e343924bac7451cd292, type: 3}
   afraid: {fileID: -30197526, guid: 4bae2b2c39eb0b64184baca115b98605, type: 3}
@@ -329,7 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66d4a56f8e548e48dc5ed777aa2ae97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 895820383106646398, guid: d85764f627b9e604096ddf5d5a8c6174, type: 3}
   normal: {fileID: 234604763, guid: 732c8f1bc51f8ee45a43d49c75aeba72, type: 3}
   angry: {fileID: 739979233, guid: 201280b8eb2f38a478b417b2ca695299, type: 3}
   afraid: {fileID: 28421369, guid: 4d860fafc2dd41f4e9a825992c44e304, type: 3}

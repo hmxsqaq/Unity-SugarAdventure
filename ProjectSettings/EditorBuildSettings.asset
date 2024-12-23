@@ -6,9 +6,39 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Hmxs/Scenes/test1.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Game Level Building/Level 1.unity
+    guid: 67804556f276ebb4f8a8dafc86111d8b
   - enabled: 1
-    path: Assets/Hmxs/Scenes/test2.unity
-    guid: 6df0fdc17886e9d4b8b68568a4e90c3c
+    path: Assets/Game Level Building/Level 2.unity
+    guid: 360837b5c3e5a2042afc4268371a7ec8
+  - enabled: 1
+    path: Assets/Game Level Building/Level 3.unity
+    guid: 15183bae424eaf34fa09937e5f797233
+  - enabled: 1
+    path: Assets/Game Level Building/Level 4.unity
+    guid: f5a315eb19168f24ead1c188cb9cfc70
+  - enabled: 1
+    path: Assets/Game Level Building/Level 5.unity
+    guid: ea7ef09865880794f82b8b1327acf561
+  - enabled: 1
+    path: Assets/Game Level Building/Level 6.unity
+    guid: ee2859fd629bdda4695ed6815e137b10
+  - enabled: 1
+    path: Assets/Game Level Building/Level 7.unity
+    guid: ba8cc60397e5fad45a98e5c44f1e33b3
+  - enabled: 1
+    path: Assets/Game Level Building/Level 8.unity
+    guid: acca103b6a720f441bf37e69c30e989b
+  - enabled: 1
+    path: Assets/Game Level Building/Level 9.unity
+    guid: ddec86e3182977f48994f82d3470da29
+  - enabled: 1
+    path: Assets/Game Level Building/Level 10.unity
+    guid: 0952a5e09f3ca324590aa89a733f1eaa
+  - enabled: 1
+    path: Assets/Game Level Building/Level 11.unity
+    guid: 2b1fa82ea4e4c8643ab1bf7242d054e6
+  - enabled: 1
+    path: Assets/Game Level Building/Level 12.unity
+    guid: 3f243919b3fc7a0429dcaa0dbc0a69be
   m_configObjects: {}

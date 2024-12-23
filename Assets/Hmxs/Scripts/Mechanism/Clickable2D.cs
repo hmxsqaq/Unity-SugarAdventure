@@ -1,5 +1,7 @@
 ﻿using System;
 using HighlightPlus2D;
+using MoreMountains.Feedbacks;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Hmxs.Scripts.Mechanism
@@ -8,6 +10,9 @@ namespace Hmxs.Scripts.Mechanism
 	public abstract class Clickable2D : MonoBehaviour, IInteractable
 	{
 		[SerializeField] private bool interactable;
+		[Title("Audio")]
+		[SerializeField] protected MMF_Player sound1;
+		[SerializeField] protected MMF_Player sound2;
 
 		protected bool Interactable
 		{

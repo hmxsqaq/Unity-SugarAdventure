@@ -26,6 +26,11 @@ namespace Hmxs.Scripts
 		[SerializeField] private ParticleSystem winVFX;
 		[SerializeField] private ParticleSystem bornVFX;
 
+		[Title("Audio")]
+		[SerializeField] private AudioClip winAudio;
+		[SerializeField] private AudioClip failAudio;
+		[SerializeField] private AudioClip bornAudio;
+
 		private bool _isControlBarOpen;
 
 		private void OnEnable()
@@ -47,6 +52,7 @@ namespace Hmxs.Scripts
 			levelTransitionCanvasGroup.alpha = 1;
 			levelTransitionCanvasGroup
 				.DOFade(0, fadeDuration)
+				.SetDelay(1f)
 				.OnComplete(SetUpProtagonist);
 		}
 
@@ -71,6 +77,7 @@ namespace Hmxs.Scripts
 
 		private void Fail(Protagonist.Protagonist protagonist)
 		{
+			AudioSource.PlayClipAtPoint(failAudio, protagonist.GetPosition());
 			GenerateVFX(hitVFX, protagonist.GetPosition());
 			ProtagonistManager.Instance.Hide();
 			failCanvasGroup
@@ -79,12 +86,18 @@ namespace Hmxs.Scripts
 				{
 					failCanvasGroup
 						.DOFade(0, fadeDuration)
-						.OnComplete(SetUpProtagonist);
+						.SetDelay(1f)
+						.OnComplete(() =>
+						{
+							SetUpProtagonist();
+							Events.Trigger(EventNames.Restart);
+						});
 				});
 		}
 
 		private void Win(Protagonist.Protagonist protagonist)
 		{
+			AudioSource.PlayClipAtPoint(winAudio, protagonist.GetPosition());
 			GenerateVFX(winVFX, protagonist.GetPosition());
 			ProtagonistManager.Instance.Hide();
 			winCanvasGroup
@@ -93,6 +106,7 @@ namespace Hmxs.Scripts
 				{
 					levelTransitionCanvasGroup
 						.DOFade(1, fadeDuration)
+						.SetDelay(1f)
 						.OnComplete(LoadNextLevel);
 				});
 		}
@@ -100,6 +114,7 @@ namespace Hmxs.Scripts
 		[Button]
 		private void SetUpProtagonist()
 		{
+			AudioSource.PlayClipAtPoint(bornAudio, startPosition.position);
 			var protagonist = ProtagonistManager.Instance.Setup();
 			GenerateVFX(bornVFX, protagonist.GetPosition());
 		}
@@ -143,6 +158,9 @@ namespace Hmxs.Scripts
 						Debug.LogWarning("Invalid scene index");
 					return;
 				}
+				case "relo":
+					SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+					return;
 				default:
 					Debug.LogWarning("Invalid command");
 					return;

@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {fileID: 9179791846932926658}
-  fadeDuration: 1
+  fadeDuration: 2
   levelTransitionCanvasGroup: {fileID: 6023629862910341575}
   failCanvasGroup: {fileID: 2085467949446444433}
   winCanvasGroup: {fileID: 7204094917256805133}
@@ -361,6 +361,9 @@ MonoBehaviour:
   hitVFX: {fileID: 6618361228449395708, guid: d85764f627b9e604096ddf5d5a8c6174, type: 3}
   winVFX: {fileID: 1231867604703402376, guid: b0000b7f21719c44b9ddc36fe08ae3e8, type: 3}
   bornVFX: {fileID: 5199434288197783443, guid: 88e8ecbc2ea6bbd4fa1c99a0c724baa1, type: 3}
+  winAudio: {fileID: 8300000, guid: 16587f4e62adba84f99e089dabdd0367, type: 3}
+  failAudio: {fileID: 8300000, guid: 2d75f5a5557fb6c429fce97f254002d8, type: 3}
+  bornAudio: {fileID: 8300000, guid: 73f9050045b77344f9a72c3d60d22489, type: 3}
 --- !u!1 &3754775513580768306
 GameObject:
   m_ObjectHideFlags: 0

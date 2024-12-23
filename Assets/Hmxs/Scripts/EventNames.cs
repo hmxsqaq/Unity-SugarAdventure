@@ -4,5 +4,6 @@
 	{
 		public const string Win = "Win";
 		public const string Fail = "Fail";
+		public const string Restart = "Restart";
 	}
 }

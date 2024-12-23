@@ -1,4 +1,5 @@
-﻿using Hmxs.Toolkit;
+﻿using Hmxs.Scripts.Protagonist;
+using Hmxs.Toolkit;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,7 +13,7 @@ namespace Hmxs.Scripts.Mechanism
 		{
 			if (other.CompareTag("Protagonist"))
 			{
-				Events.Trigger(EventNames.Win);
+				Events.Trigger(EventNames.Win, ProtagonistManager.Instance.CurrentProtagonist);
 				onWin?.Invoke();
 			}
 		}
